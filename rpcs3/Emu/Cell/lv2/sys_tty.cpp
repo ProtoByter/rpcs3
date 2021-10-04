@@ -7,6 +7,7 @@
 
 #include <deque>
 #include <mutex>
+#include <iostream>
 
 LOG_CHANNEL(sys_tty);
 
@@ -82,6 +83,7 @@ error_code sys_tty_read(s32 ch, vm::ptr<char> buf, u32 len, vm::ptr<u32> preadle
 	if (chars_to_read > 0)
 	{
 		std::memcpy(buf.get_ptr(), tty_read.c_str(), chars_to_read);
+		std::cout << tty_read << std::endl;
 		sys_tty.success("sys_tty_read(ch=%d, len=%d) read %s with length %d", ch, len, tty_read, *preadlen);
 	}
 
